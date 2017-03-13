@@ -389,7 +389,8 @@ namespace VSPackage.CPPCheckPlugin
 
 			_unfinishedProblem = new Problem(this, severity, parsed[3], parsed[4], parsed[0], String.IsNullOrWhiteSpace(parsed[1]) ? 0 : Int32.Parse(parsed[1]), _projectBasePath, _projectName);
 
-			MainToolWindow.Instance.bringToFront();
+            if (Properties.Settings.Default.ShowOutputWindow == (int)ShowOutputWindow.ProblemFound)
+                MainToolWindow.Instance.bringToFront();
 
 			return result;
 		}
@@ -398,6 +399,9 @@ namespace VSPackage.CPPCheckPlugin
 		{
 			if (_unfinishedProblem != null)
 				addProblemToToolwindow(_unfinishedProblem);
+
+            if (Properties.Settings.Default.ShowOutputWindow == (int)ShowOutputWindow.CheckComplete)
+                MainToolWindow.Instance.bringToFront();
 
 			const string fileListPattern = "--file-list=\"";
 			int filenamePos = arguments.IndexOf(fileListPattern) + fileListPattern.Length;

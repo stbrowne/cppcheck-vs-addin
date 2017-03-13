@@ -54,6 +54,17 @@ namespace VSPackage.CPPCheckPlugin
 			File_OnlyCheckCurrentConfig.IsChecked = settings.FileOnlyCheckCurrentConfig;
 			ArgumentsEditor.Text = settings.DefaultArguments;
             IgnoreIncludePaths.IsChecked = settings.IgnoreIncludePaths;
+
+            var radios = new Dictionary<RadioButton, ICodeAnalyzer.ShowOutputWindow>() {
+                { ProblemFoundRadio, ICodeAnalyzer.ShowOutputWindow.ProblemFound },
+                { CheckCompleteRadio, ICodeAnalyzer.ShowOutputWindow.CheckComplete },
+                { NeverShowRadio, ICodeAnalyzer.ShowOutputWindow.Never }
+            };
+            foreach (var radio in radios)
+            {
+                radio.Key.Tag = radio.Value;
+                radio.Key.IsChecked = (settings.ShowOutputWindow == (int)radio.Value);
+            }
 		}
 
 		private void OnClosed(object o, EventArgs e)
@@ -162,5 +173,15 @@ namespace VSPackage.CPPCheckPlugin
 			var messagesListWindow = new CppcheckMessagesList();
 			messagesListWindow.Show();
 		}
+
+        private void ShowOutputRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var radio = sender as RadioButton;
+            if (radio == null)
+                return;
+
+            Properties.Settings.Default.ShowOutputWindow = (int)radio.Tag;
+            Properties.Settings.Default.Save();
+        }
 	}
 }

@@ -4,6 +4,13 @@
         Title="Cppcheck settings"
         SizeToContent="WidthAndHeight" MaxWidth="800">
     <StackPanel Margin="5,5,5,5">
+        <GroupBox Header="Show Output On:" Padding="5" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Margin="0,0,10,0" Checked="ShowOutputRadioButton_Checked" Name="ProblemFoundRadio">Problem Found</RadioButton>
+                <RadioButton Margin="0,0,10,0" Checked="ShowOutputRadioButton_Checked" Name="CheckCompleteRadio">Check Complete</RadioButton>
+                <RadioButton Margin="0,0,10,0" Checked="ShowOutputRadioButton_Checked" Name="NeverShowRadio">Never</RadioButton>
+            </StackPanel>
+        </GroupBox>
         <CheckBox Content="Enable inconclusive checks" Name="InconclusiveChecks" Checked="inconclusive_Checked" Unchecked="inconclusive_Unchecked"/>
         <CheckBox Content="Check files after save (this would overwrite results from previous cppcheck run)" Name="CheckSavedFiles" Checked="checkSavedFiles_Checked" Unchecked="checkSavedFiles_Unchecked"/>
         <CheckBox Content="Ignore include paths when checking saved files (faster check)" Name="IgnoreIncludePaths" Checked="ignoreIncludePaths_Checked" Unchecked="ignoreIncludePaths_Unchecked"/>

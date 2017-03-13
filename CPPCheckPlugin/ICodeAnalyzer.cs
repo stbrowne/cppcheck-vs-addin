@@ -30,6 +30,13 @@ namespace VSPackage.CPPCheckPlugin
 			Global
 		}
 
+        public enum ShowOutputWindow
+        {
+            ProblemFound,
+            CheckComplete,
+            Never
+        }
+
 		public enum AnalysisType { DocumentSavedAnalysis, ProjectAnalysis };
 
 		public class ProgressEvenArgs : EventArgs

@@ -133,5 +133,17 @@ namespace VSPackage.CPPCheckPlugin.Properties {
                 this["IgnoreIncludePaths"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ShowOutputWindow {
+            get {
+                return ((int)(this["ShowOutputWindow"]));
+            }
+            set {
+                this["ShowOutputWindow"] = value;
+            }
+        }
     }
 }
